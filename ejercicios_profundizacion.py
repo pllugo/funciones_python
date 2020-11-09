@@ -11,12 +11,15 @@ Programa creado para que practiquen los conocimietos
 adquiridos durante la semana
 '''
 
-__author__ = "Inove Coding School"
-__email__ = "alumnos@inove.com.ar"
+__author__ = "Pedro Luis Lugo Garcia"
+__email__ = "pllugo@gmail.com"
 __version__ = "1.3"
 
 
-def ej1():
+import mimodulo
+
+
+def ej1(): #Para esta parte cree mimodulo.py
     print('Comencemos a crear lo nuestro!')
 
     '''
@@ -32,6 +35,8 @@ def ej1():
     Importe el módulo a este programa/documento para su uso
     en el resto de los ejercicios
     '''
+
+    #El archivo es mimodulo.py
 
 
 def ej2():
@@ -54,6 +59,16 @@ def ej2():
     de números generados.
     Imprimir en pantalla la lista ordenada
     '''
+
+    tiros_dados = 5
+    inicio = 1
+    fin = 6
+
+    nueva_lista = mimodulo.lista_aleatoria(inicio, fin, tiros_dados) #Genero una lista aleatoria enviandole a la función
+                                                                     # el inicio y fin y la cantidad de dados
+    print("Lista generada", nueva_lista)
+    lista_ordenada = mimodulo.ordenar(nueva_lista) #Genero la lista ordenada
+    print("Lista ordenada es:", lista_ordenada)
 
 
 def ej3():
@@ -87,6 +102,21 @@ def ej3():
     vistos en clase para ver como se implementa max con esa key
 
     '''
+
+    tiros_dados = 5
+    inicio = 1
+    fin = 6
+
+    nueva_lista = mimodulo.lista_aleatoria(inicio, fin, tiros_dados)
+    print("Lista generada", nueva_lista)
+    lista_ordenada = mimodulo.ordenar(nueva_lista)
+    print("Lista ordenada es:", lista_ordenada)
+    for j in range(6):#Uso un ciclo for para recorrer la lista
+        contar_lista = mimodulo.contar(lista_ordenada, j+1) #j+1 ya que quiero comparar empezando con el número 1
+        print("El número {} se encuentra {} en mi lista de dados".format(j+1,contar_lista))
+    #Usando la función max y con key de list.count
+    max_repeticiones = max(lista_ordenada, key=lista_ordenada.count)
+    print('El número que mas se repite en la lista', max_repeticiones)
 
 
 def ej4():
@@ -144,6 +174,41 @@ def ej4():
     guardados" tenga "generala", es decir, 5 números iguales.
 
     '''
+  
+    dados = 5
+    lista_dados = mimodulo.vector_dados(dados) #Genero el vector de dados lanzados
+    while len(lista_dados) > 1:
+        if len(lista_dados) == 5:
+            print("Generala")
+            print(lista_dados)
+            break
+        else:
+            if len(lista_dados) == 2:
+                nueva_lista = mimodulo.lista_aleatoria(1, 6, 3)#Debo lanzar 3 dados
+                print("Se lanzan 3 dados")
+                numero = mimodulo.contar(nueva_lista, lista_dados[0])
+                if numero >= 1:
+                    for y in range(numero):
+                        lista_dados.append(lista_dados[y])
+                    print(lista_dados)
+            else:
+                if len(lista_dados) == 3:
+                    nueva_lista = mimodulo.lista_aleatoria(1, 6, 2)#Debo lanzar 2 dados
+                    print("Se lanzan 2 dados")
+                    numero = mimodulo.contar(nueva_lista, lista_dados[0])
+                    if numero >= 1:
+                        for y in range(numero):
+                            lista_dados.append(lista_dados[y])
+                        print(lista_dados)
+                else:
+                    if len(lista_dados) == 4:
+                        nueva_lista =mimodulo.lista_aleatoria(1, 6, 1)#Debo lanzar 1 dado
+                        print("Se lanza 1 dado")
+                        numero = mimodulo.contar(nueva_lista, lista_dados[0])
+                        if numero >= 1:
+                            for y in range(numero):
+                                lista_dados.append(lista_dados[y])
+                            print(lista_dados)
 
 
 if __name__ == '__main__':
@@ -151,4 +216,4 @@ if __name__ == '__main__':
     # ej1()
     # ej2()
     # ej3()
-    # ej4()
+    ej4()
